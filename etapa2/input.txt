@@ -1,0 +1,62 @@
+//Identificadores 
+_
+__
+@
+@@
+_casa
+@_casa
+Casa
+casa
+c@sa
+c4s4
+c0r@c@0
+var18876
+_8
+_a
+a_8
+
+//Literal Inteiro
+5 00021
+5A
+5LEO
+55FED26
+
+//Literal Real
+0.0
+4D5.8EA
+.8CB
+
+54.89
+0A.5F
+"\n"
+//Literal Booleano
+TRUE
+FALSE
+Strue
+ktrue
+TRUES
+
+//Literal String
+"VOA"
+"CAVALO"aaaaaa
+"VACA"
+"BOI"
+"OLA""PESSOA"dsadasd"AVIAO"""""
+"ALO"
+true
+
+//Literal Caractere
+'a
+'b'
+'casa''cavalo'
+'a' 'b' "'c'" '' 
+"BOI"
+
+//codigo
+int nota <- 10;
+if(nota >= 6) then { 
+	print("passou");
+}
+else{ 
+	print("rodou");
+}
