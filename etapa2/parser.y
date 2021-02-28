@@ -29,7 +29,6 @@
 %token LIT_STRING    
 %token TOKEN_ERROR    
 
-
 %%
 
 programa: decl
@@ -41,7 +40,7 @@ decl: dec ';' decl
 
 dec: type def
     | type '[' LIT_INTEGER ']' TK_IDENTIFIER init_v
-    | type TK_IDENTIFIER '(' param ')'
+    | type TK_IDENTIFIER '(' param ')' body
     ;
 
 type: KW_INT
@@ -75,22 +74,37 @@ values_p: type TK_IDENTIFIER ',' values_p
     | type TK_IDENTIFIER
     ;
 
- body: '{' lcmd '}'
+ body: '{' lcmmd '}'
     ;
 
-lcmd: cmd lcmd
+lcmmd: cmmd ';' lcmmd
     |
     ;
 
 
 
-cmd: TK_IDENTIFIER ':' expr
+cmmd: assign
+    | KW_READ TK_IDENTIFIER
+    | KW_PRINT lprnt
+    | KW_RETURN expr
+    | body
     ;
 
-expr: LIT_INTEGER
-    | LIT_CHAR
-    | LIT_FALSE
-    | LIT_TRUE
+assign: expr RIGHT_ASSIGN TK_IDENTIFIER
+    | TK_IDENTIFIER LEFT_ASSIGN expr
+    | TK_IDENTIFIER '['expr']' LEFT_ASSIGN expr
+    | expr RIGHT_ASSIGN TK_IDENTIFIER '[' expr ']'
+    ;
+
+lprnt: LIT_STRING ',' lprnt
+    | LIT_STRING
+    | expr ',' lprnt
+    | expr
+    ;
+
+expr: lit_def
+    | TK_IDENTIFIER
+    | TK_IDENTIFIER '[' expr ']'
     | expr '+' expr
     | expr '-' expr
     | expr '*' expr
@@ -106,9 +120,8 @@ expr: LIT_INTEGER
     | expr OPERATOR_GE expr
     | expr OPERATOR_EQ expr
     | expr OPERATOR_DIF expr
-    | expr LEFT_ASSIGN expr
-    | expr RIGHT_ASSIGN expr
     | '(' expr ')'
+    ;
 
 %%
 

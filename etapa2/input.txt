@@ -4,8 +4,25 @@ int a :  'A';
 int i :  0;
 int[10] v : 0 0 0 0 0 0 0 0 0 0; 
 int [ 10] mat; 
-
-int funcao (); 
-int funcao1 (int teste); 
-char fun ();
-int funcao2 (int feijoa, char pesr, bool az); 
+int funcao2 (int feijoa, char pesr, bool az)
+{
+  a <- 5;
+  v[a] <- 55;
+    print "Nao tem como isso...\n";
+  2-> i;
+  read a; 
+  return x+n; 
+      print "A igual a 15 ou 17\n";
+  return 0; 
+  return (x+n)*8;
+  return true;
+  print v[55];
+  print "ola, este é o primeiro programa"; 
+    print "Incrementado algumas vezes a fica " ,a ,"\n";
+  print "meu programa com \n";
+      print "A=15\n";
+  print 0+4;
+  print true+false;
+  print "imprimindo uma variavel", teste, azul, "pera";
+      print "OK!\n";
+}; 
