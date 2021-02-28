@@ -35,18 +35,21 @@
 programa: decl
     ;
 
-decl: dec resto
+decl: dec ';'
+    | dec ';' decl
     |
     ;
 
-resto: ',' dec resto
-    |
+dec: type cmd
+    | type TK_IDENTIFIER '(' ')' body
     ;
 
-dec: KW_INT TK_IDENTIFIER
-    | KW_INT TK_IDENTIFIER '(' ')' body
+type: KW_INT
+    | KW_BOOL
+    | KW_CHAR
+    | KW_POINTER
     ;
-    
+
  body: '{' lcmd '}'
     ;
 
@@ -54,14 +57,30 @@ lcmd: cmd lcmd
     |
     ;
 
-cmd: TK_IDENTIFIER '<' expr
+cmd: TK_IDENTIFIER ':' expr
     ;
 
 expr: LIT_INTEGER
-    | TK_IDENTIFIER
+    | LIT_CHAR
+    | LIT_FALSE
+    | LIT_TRUE
     | expr '+' expr
     | expr '-' expr
+    | expr '*' expr
+    | expr '/' expr
+    | expr '<' expr
+    | expr '>' expr
+    | expr '|' expr
+    | expr '&' expr
+    | expr '~' 
+    | expr '$' 
+    | expr '#'
+    | expr OPERATOR_LE expr
+    | expr OPERATOR_GE expr
+    | expr OPERATOR_EQ expr
     | expr OPERATOR_DIF expr
+    | expr LEFT_ASSIGN expr
+    | expr RIGHT_ASSIGN expr
     | '(' expr ')'
 
 %%

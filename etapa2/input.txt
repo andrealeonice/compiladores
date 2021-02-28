@@ -1,7 +1,6 @@
-int a, 
-int b, 
-int fun () 
-{
-a<5
-b<777 + b -(x)
-} 
+char a: 'c';
+int zebra: 48454;
+bool teste: true;
+bool ts: false;
+
+int soma: 1+2;
