@@ -1,6 +1,6 @@
-char a: 'c';
-int zebra: 48454;
-bool teste: true;
-bool ts: false;
-
-int soma: 1+2;
+bool b : false;
+char c :'x';
+int a :  'A';
+int i :  0;
+int[10] v : 0 0 0 0 0 0 0 0 0 0; 
+int [ 10] mat; 

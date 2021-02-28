@@ -35,12 +35,12 @@
 programa: decl
     ;
 
-decl: dec ';'
-    | dec ';' decl
+decl: dec ';' decl
     |
     ;
 
-dec: type cmd
+dec: type def
+    | type '[' LIT_INTEGER ']' TK_IDENTIFIER init_v
     | type TK_IDENTIFIER '(' ')' body
     ;
 
@@ -50,12 +50,31 @@ type: KW_INT
     | KW_POINTER
     ;
 
+def: TK_IDENTIFIER ':' lit_def
+    ;
+
+lit_def: LIT_CHAR
+    | LIT_INTEGER
+    | LIT_FALSE
+    | LIT_TRUE
+    ;
+    
+init_v: ':' values_v
+    |
+    ;
+
+values_v: lit_def values_v
+    |
+    ;
+
  body: '{' lcmd '}'
     ;
 
 lcmd: cmd lcmd
     |
     ;
+
+
 
 cmd: TK_IDENTIFIER ':' expr
     ;
