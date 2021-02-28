@@ -1,5 +1,5 @@
 %{
- #include "tokens.h"
+ #include "y.tab.h"
  #include "hash.c"
 int running = 1;
 int lineNumber = 1;
@@ -60,7 +60,7 @@ return                         {return KW_RETURN;}
 .                              {return TOKEN_ERROR;}
 
 %%
-
+#include "y.tab.c"
 #include "main.c"
 
 int yywrap()
