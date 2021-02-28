@@ -121,11 +121,22 @@ expr: lit_def
     | expr '#'
     | expr OPERATOR_LE expr
     | expr OPERATOR_GE expr
-    | expr OPERATOR_EQ expr
+    | expr OPERATOR_EQ expr 
     | expr OPERATOR_DIF expr
     | '(' expr ')'
+    | call_funct
     ;
 
+call_funct: TK_IDENTIFIER '(' larg ')'
+    | TK_IDENTIFIER '('')'
+    ;
+
+larg: expr add_arg
+    ;
+
+add_arg: ',' larg
+    |
+    ;
 %%
 
 int yyerror ()

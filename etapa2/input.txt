@@ -1,18 +1,32 @@
-// UFRGS - Compiladores - Andrea Leonice - 2020/2
+// UFRGS - Compiladores - Marcelo Johann - 2020/2
+
 bool b : false;
+
 char c :'x';
 int a :  'A';
 int i :  0;
 int[10] v : 0 0 0 0 0 0 0 0 0 0; 
-int [ 10] mat; 
-int funcao2 (int feijoa, char pesr, bool az)
-{
-      
-   if (i<10) then
-   {
-   print "teste";};
-   
- if (a==15) then 
+int [ 10] mat ; 
+
+int main () 
+  {
+  a <- 5;
+  v[a] <- 55;
+  print v[55];
+  2 -> i;
+
+  print "Digite um numero: \n";
+  read a;
+
+  while (i<10)
+    {
+    i <- incn(i,1);
+    a <- incn(a,1);
+    };
+
+  print "Incrementado algumas vezes a fica " ,a ,"\n";
+
+  if (a==15) then 
     print "A=15\n";
 
   if ( a==15 | a==17 ) then
@@ -24,18 +38,9 @@ int funcao2 (int feijoa, char pesr, bool az)
     }
   else
     print "OK!\n";
-  	
-  	
-while (a<b)
-{
-return 0;
-print "ok";
-}; 		
-};
-
+  };
 
 int incn (int x , int n )
   {
   return x+n;
   };
-
