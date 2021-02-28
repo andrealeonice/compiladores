@@ -55,7 +55,7 @@ return                         {return KW_RETURN;}
 
 [0-9]+                         {hashInsert(yytext, LIT_INTEGER); return LIT_INTEGER;}
 '[^\n']'                       {hashInsert(yytext, LIT_CHAR); return LIT_CHAR;}
- \"[^\n"]+\"                   {hashInsert(yytext, LIT_STRING); return LIT_STRING;}
+ \"[^\n"]*\"                   {hashInsert(yytext, LIT_STRING); return LIT_STRING;}
 
 .                              {return TOKEN_ERROR;}
 

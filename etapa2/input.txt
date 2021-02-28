@@ -6,7 +6,8 @@ char c :'x';
 int a :  'A';
 int i :  0;
 int[10] v : 0 0 0 0 0 0 0 0 0 0; 
-int [ 10] mat ; 
+int [ 10] mat ; //sem inicilização
+
 
 int main () 
   {
