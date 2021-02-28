@@ -1,3 +1,4 @@
+// UFRGS - Compiladores - Andrea Leonice - 2020/2
 bool b : false;
 char c :'x';
 int a :  'A';
@@ -6,23 +7,35 @@ int[10] v : 0 0 0 0 0 0 0 0 0 0;
 int [ 10] mat; 
 int funcao2 (int feijoa, char pesr, bool az)
 {
-  a <- 5;
-  v[a] <- 55;
+      
+   if (i<10) then
+   {
+   print "teste";};
+   
+ if (a==15) then 
+    print "A=15\n";
+
+  if ( a==15 | a==17 ) then
+    print "A igual a 15 ou 17\n";
+
+  if (i==100) then 
+    {
     print "Nao tem como isso...\n";
-  2-> i;
-  read a; 
-  return x+n; 
-      print "A igual a 15 ou 17\n";
-  return 0; 
-  return (x+n)*8;
-  return true;
-  print v[55];
-  print "ola, este é o primeiro programa"; 
-    print "Incrementado algumas vezes a fica " ,a ,"\n";
-  print "meu programa com \n";
-      print "A=15\n";
-  print 0+4;
-  print true+false;
-  print "imprimindo uma variavel", teste, azul, "pera";
-      print "OK!\n";
-}; 
+    }
+  else
+    print "OK!\n";
+  	
+  	
+while (a<b)
+{
+return 0;
+print "ok";
+}; 		
+};
+
+
+int incn (int x , int n )
+  {
+  return x+n;
+  };
+

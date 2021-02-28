@@ -81,14 +81,17 @@ lcmmd: cmmd ';' lcmmd
     |
     ;
 
-
-
 cmmd: assign
+    | flow_ctrl
     | KW_READ TK_IDENTIFIER
     | KW_PRINT lprnt
     | KW_RETURN expr
     | body
     ;
+
+flow_ctrl: KW_IF '(' expr ')' KW_THEN cmmd
+    | KW_IF '(' expr ')' KW_THEN cmmd KW_ELSE cmmd
+    | KW_WHILE '(' expr')' cmmd
 
 assign: expr RIGHT_ASSIGN TK_IDENTIFIER
     | TK_IDENTIFIER LEFT_ASSIGN expr
