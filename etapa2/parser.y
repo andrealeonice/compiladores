@@ -41,7 +41,7 @@ decl: dec ';' decl
 
 dec: type def
     | type '[' LIT_INTEGER ']' TK_IDENTIFIER init_v
-    | type TK_IDENTIFIER '(' ')' body
+    | type TK_IDENTIFIER '(' param ')'
     ;
 
 type: KW_INT
@@ -65,6 +65,14 @@ init_v: ':' values_v
 
 values_v: lit_def values_v
     |
+    ;
+
+param: values_p 
+    |
+    ;
+
+values_p: type TK_IDENTIFIER ',' values_p
+    | type TK_IDENTIFIER
     ;
 
  body: '{' lcmd '}'

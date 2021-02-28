@@ -4,3 +4,8 @@ int a :  'A';
 int i :  0;
 int[10] v : 0 0 0 0 0 0 0 0 0 0; 
 int [ 10] mat; 
+
+int funcao (); 
+int funcao1 (int teste); 
+char fun ();
+int funcao2 (int feijoa, char pesr, bool az); 
