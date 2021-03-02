@@ -1,4 +1,6 @@
-
+%{
+int yyerror();
+%}
 
 
 %token KW_CHAR       
@@ -122,9 +124,9 @@ expr: lit_def
     | expr '>' expr
     | expr '|' expr
     | expr '&' expr
-    | expr '~' 
-    | expr '$' 
-    | expr '#'
+    | '~' expr 
+    | '$' expr 
+    | '#' expr 
     | expr OPERATOR_LE expr
     | expr OPERATOR_GE expr
     | expr OPERATOR_EQ expr 
