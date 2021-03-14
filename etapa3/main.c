@@ -1,3 +1,11 @@
+#include <stdio.h>
+#include "ast.h"
+#include "hash.h"
+extern FILE *yyin; 
+
+int yyparse();
+int initMe();
+
 int main(int argc, char ** argv)
 {
    int tok; 

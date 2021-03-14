@@ -1,7 +1,17 @@
 %{
+    #include "hash.h"
+    #include "ast.h"
 int yyerror();
+int getLineNumber(void);
+int yylex();
+
 %}
 
+%union 
+{
+    HASH_NODE *symbol;
+    AST *ast;
+}
 
 %token KW_CHAR       
 %token KW_INT        
@@ -22,14 +32,18 @@ int yyerror();
 %token OPERATOR_DIF  
 %token LEFT_ASSIGN   
 %token RIGHT_ASSIGN  
-%token TK_IDENTIFIER 
+%token  <symbol> TK_IDENTIFIER 
 
-%token LIT_INTEGER   
-%token LIT_TRUE      
-%token LIT_FALSE     
-%token LIT_CHAR      
-%token LIT_STRING    
+%token <symbol> LIT_INTEGER   
+%token <symbol> LIT_TRUE      
+%token <symbol> LIT_FALSE     
+%token <symbol> LIT_CHAR      
+%token <symbol> LIT_STRING    
 %token TOKEN_ERROR  
+
+%type<ast> expr
+%type<ast> lit_def
+
 
 %left '|' '&'
 %left '<' '>' OPERATOR_EQ OPERATOR_DIF OPERATOR_GE OPERATOR_LE
@@ -60,10 +74,10 @@ type: KW_INT
 def: TK_IDENTIFIER ':' lit_def
     ;
 
-lit_def: LIT_CHAR
-    | LIT_INTEGER
-    | LIT_FALSE
-    | LIT_TRUE
+lit_def: LIT_CHAR {$$ = astCreate(AST_SYMBOL, $1 ,0, 0, 0 , 0);}
+    | LIT_INTEGER  {$$ = astCreate(AST_SYMBOL, $1 ,0, 0, 0 , 0);}
+    | LIT_FALSE   {$$ = astCreate(AST_SYMBOL, $1 ,0, 0, 0 , 0);}
+    | LIT_TRUE    {$$ = astCreate(AST_SYMBOL, $1 ,0, 0, 0 , 0);}
     ;
     
 init_v: ':' values_v
@@ -103,7 +117,7 @@ flow_ctrl: KW_IF '(' expr ')' KW_THEN cmmd
     | KW_WHILE '(' expr')' cmmd
 
 assign: expr RIGHT_ASSIGN TK_IDENTIFIER
-    | TK_IDENTIFIER LEFT_ASSIGN expr
+    | TK_IDENTIFIER LEFT_ASSIGN expr    {astPrint($3,0);}
     | TK_IDENTIFIER '['expr']' LEFT_ASSIGN expr
     | expr RIGHT_ASSIGN TK_IDENTIFIER '[' expr ']'
     ;
@@ -114,26 +128,26 @@ lprnt: LIT_STRING ',' lprnt
     | expr
     ;
 
-expr: lit_def
-    | TK_IDENTIFIER
-    | TK_IDENTIFIER '[' expr ']'
-    | expr '+' expr
-    | expr '-' expr
-    | expr '*' expr
-    | expr '/' expr
+expr: lit_def                      
+    | TK_IDENTIFIER                 {$$= astCreate(AST_SYMBOL, $1 ,0, 0, 0 , 0);}
+    | TK_IDENTIFIER '[' expr ']'    {$$ = 0;}
+    | expr '+' expr                 {$$ = astCreate(AST_ADD,0, $1, $3, 0, 0);}
+    | expr '-' expr                 {$$ = astCreate(AST_SUB,0, $1, $3, 0, 0);}
+    | expr '*' expr     
+    | expr '/' expr     
     | expr '<' expr
     | expr '>' expr
     | expr '|' expr
     | expr '&' expr
-    | '~' expr 
-    | '$' expr 
-    | '#' expr 
+    | '~' expr                      {$$ = 0;} 
+    | '$' expr                      {$$ = 0;} 
+    | '#' expr                      {$$ = 0;}              
     | expr OPERATOR_LE expr
     | expr OPERATOR_GE expr
     | expr OPERATOR_EQ expr 
     | expr OPERATOR_DIF expr
-    | '(' expr ')'
-    | call_funct
+    | '(' expr ')'                  {$$ =$2;}
+    | call_funct                    {$$ = 0;}
     ;
 
 call_funct: TK_IDENTIFIER '(' larg ')'
