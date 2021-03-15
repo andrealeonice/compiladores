@@ -1,6 +1,8 @@
 // UFRGS - Compiladores - Andrea Santos - 275624 - 2020/2
 
-int main () 
+int main ()
   {
- a <- 2+34+5+6-1;
+ a <- 2+34;
+ b <- 5+6;
+ c<- b -1;
   };

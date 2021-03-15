@@ -25,10 +25,6 @@ hash.o: hash.c
 ast.o: ast.c
 	gcc -c ast.c
 
-
-
-
-
 y.tab.c: parser.y
 	yacc -d parser.y
 
