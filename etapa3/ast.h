@@ -50,6 +50,7 @@
 #define AST_DEC_VECTOR 41
 #define AST_DEC_VAR 42
 #define AST_DECL 43
+#define AST_BODY 44
 
 typedef struct astnode
 {
