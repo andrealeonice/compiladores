@@ -51,7 +51,7 @@
 #define AST_DEC_VAR 42
 #define AST_DECL 43
 #define AST_BODY 44
-
+#define AST_PARENT 45
 
 typedef struct astnode
 {

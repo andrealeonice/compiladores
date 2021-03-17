@@ -72,7 +72,7 @@ void astPrint(AST *node, int level)
         case AST_DEC_VAR: fprintf(stderr, "AST_DEC_VAR"); break;
         case AST_DECL: fprintf(stderr, "AST_DECL"); break;
         case AST_BODY: fprintf(stderr, "AST_BODY"); break;
-    
+        case AST_PARENT: fprintf(stderr, "AST_PARENT"); break;
         
         default: fprintf(stderr, "AST_UNKOWN");  break;
     }

@@ -163,7 +163,7 @@ expr: lit_def                                               {$$= $1;}
     | expr OPERATOR_GE expr                                 {$$ = astCreate(AST_GE,0, $1, $3, 0, 0);}
     | expr OPERATOR_EQ expr                                 {$$ = astCreate(AST_EQ,0, $1, $3, 0, 0);}
     | expr OPERATOR_DIF expr                                {$$ = astCreate(AST_DIF,0, $1, $3, 0, 0);}
-    | '(' expr ')'                                          {$$ = $2;}
+    | '(' expr ')'                                          {$$ = $$ = astCreate(AST_PARENT, 0, $2, 0, 0, 0);}
     | call_funct                                            {$$ = $1;}
     ;
 

@@ -131,9 +131,9 @@ void decompile ( AST *node, FILE *out)
             }
             break;
         case AST_LCMMD: 
-            fprintf(out, "\t");
+            fprintf(out, "\n\t");
             decompile(node->son[0], out); 
-            fprintf(out, ";\n");
+            fprintf(out, ";");
             decompile(node->son[1], out); 
             break;
         case AST_READ: 
@@ -157,19 +157,19 @@ void decompile ( AST *node, FILE *out)
             decompile (node-> son[0], out);
             break;
         case AST_IF: 
-            fprintf(out, "if ( "); 
+            fprintf(out, "\n\nif ( "); 
             decompile (node->son [0], out); 
-            fprintf(out, " ) then"); 
+            fprintf(out, " ) then\n"); 
             decompile (node->son [1], out); 
             break;
         case AST_WHILE: 
-            fprintf(out, "while ( "); 
+            fprintf(out, "\n\nwhile ( "); 
             decompile (node->son[0], out);
-            fprintf (out, ") \n"); 
+            fprintf (out, ")"); 
             decompile (node->son[1], out);
             break;
         case AST_IF_ELSE: 
-            fprintf(out, "if ( "); 
+            fprintf(out, "\n\nif ( "); 
             decompile (node->son [0], out); 
             fprintf(out, " ) then\n"); 
             decompile (node->son [1], out); 
@@ -189,18 +189,18 @@ void decompile ( AST *node, FILE *out)
 
         case AST_LEFT_ASSGN_V: 
             fprintf(out, "%s", node->symbol->text); 
-            fprintf(out, " [ "); 
+            fprintf(out, "["); 
             decompile (node -> son[0], out); 
-            fprintf(out," ] <- ");
+            fprintf(out,"] <- ");
             decompile (node->son[1], out); 
             break;
         case AST_RIGHT_ASSGN_V: 
             decompile (node->son[0], out); 
              fprintf(out," -> " );
             fprintf(out, "%s", node->symbol->text); 
-            fprintf(out, " [ "); 
+            fprintf(out, "["); 
             decompile (node -> son[1], out); 
-            fprintf(out," ]");
+            fprintf(out,"]");
             break;
         case AST_LPRNT:
             decompile(node->son[0], out);
@@ -241,7 +241,7 @@ void decompile ( AST *node, FILE *out)
             fprintf(out,"["); 
             decompile(node->son[1],out); 
             fprintf(out,"]");	
-            fprintf(out,"%s", node->symbol->text);
+            fprintf(out," %s", node->symbol->text);
 			if(node->son[2]!=0)
             {
                 fprintf(out,": ");   
@@ -256,16 +256,20 @@ void decompile ( AST *node, FILE *out)
             break;
         case AST_DECL: 
             decompile(node->son[0], out);
-            fprintf(out, "; \n");
+            fprintf(out, ";\n");
             decompile(node->son[1], out); 
             break;
         case AST_BODY: 
-            fprintf(out, "{\n");
+            fprintf(out, "\n{");
             decompile(node->son[0], out);
-            fprintf(out, "}");
+            fprintf(out, "\n}");
              break;
-        
-        default: fprintf(out, "AST_UNKOWN");  break;
+        case AST_PARENT: 
+            fprintf(out, "("); 
+            decompile (node->son[0], out);
+            fprintf(out, ")");
+            break;
+        default: fprintf(out, "UNKOWN");  break;
     }
 }
 

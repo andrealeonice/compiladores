@@ -1,27 +1,54 @@
-// UFRGS - Compiladores - Andrea Santos - 275624 - 2020/2
+// UFRGS - Compiladores - Andrea Santos - 2020/2
 
+// declaração de variaveis globais 
 bool b : false;
-
-char c :'x';
-int a :  'A';
-int i :  0;
+char c: 'x';
+int a :  789;
+pointer i :  true;
 int[10] v : 0 0 0 0 0 0 0 0 0 0; 
-int [ 10] mat ; //sem inicilização
+int [10] mat ; //sem inicilização
+bool [5] b : true false true true false;
+bool [5] a;
+char [3] t: 'x' 'b' 'a';
+char [30] s;
+pointer [1] i :  true;
+pointer [10] k;
+
+// definição de funções 
+int bloco_vazio()
+{
+
+};
 
 
 int main () 
   {
     
-//testando um bloco de comentários
+
+  //atribuição
   a <- 5;
   v[a] <- 55;
-  print v[55];
+  100+50 -> s[70];
   2 -> i;
-
   b <- true;
+
+  //operações
+  c<- (24+15); 
+  d<- (23-10);
+  e<- (20*1);  
+  f<- (2/11); 
+
+
   print "Digite um numero: \n";
   read a;
+  print v[55];
+  print 'g'; 
+  print "O numero lido foi", a;
+  return true;
+  return azul; 
+  
 
+//comandos de fluxo
   while (i<10)
     {
     i <- incn(i,1);
@@ -32,28 +59,40 @@ int main ()
     while (~i)
     print "azul"; 
 
-  print ""; 
-  while (a + b)
+ 
+  while (a > b)
     {
     i <- incn(i,1);
     a <- incn(a,1);
     };
-      while (~a)
+
+  while (~10)
     {
     i <- incn(~i,1);
     a <- incn(a,1);
     };
   
+  if (a & b) then
+  print "A e B";
 
-  print "Incrementado algumas vezes a fica " ,a ,"\n";
+while (#x >= 'x')
+{
+ return false; 
+};
 
-  if (a==15) then 
+while (i<=10)
+{
+  i<- #i;
+  print "Incrementado algumas vezes a fica " ,i ,"\n";
+};
+
+if (a==15) then 
     print "A=15\n"
     else 
     a-> b;
     read a; 
 
-  if ( ~a==15 | a==17 ) then
+  if ( ~a==15 | $a!=17 ) then
   else
     print "A igual a 15 ou 17\n";
 
@@ -67,8 +106,9 @@ int incn (int x , int n )
   {
   return x+n;
   return true; 
-  return true; 
+  return 10; 
   return v[545645];
+  return 'z'; 
   };
    
 bool isTrue ()
