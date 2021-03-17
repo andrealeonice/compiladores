@@ -31,7 +31,7 @@
 #define AST_KW_POINTER 22
 #define AST_VECT_VL 23
 #define AST_LCMMD 24
-#define AST_ASSGN 25
+#define AST_STRING 25
 #define AST_READ 26
 #define AST_PRINT 27
 #define AST_RETURN 28
@@ -51,6 +51,7 @@
 #define AST_DEC_VAR 42
 #define AST_DECL 43
 #define AST_BODY 44
+
 
 typedef struct astnode
 {

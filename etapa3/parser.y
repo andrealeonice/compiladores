@@ -4,7 +4,7 @@
 int yyerror();
 int getLineNumber(void);
 int yylex();
-
+ AST *finalAST;
 %}
 
 %union 
@@ -70,7 +70,7 @@ int yylex();
 
 %%
 
-programa: decl   {astPrint($1, 0);}
+programa: decl   { $$ = $1; astPrint($1, 0); finalAST = $$;}
     ;
 
 decl: dec ';' decl                                          { $$ = astCreate(AST_DECL, 0, $1, $3, 0, 0); }
@@ -139,8 +139,8 @@ assign: expr RIGHT_ASSIGN TK_IDENTIFIER                     {$$ = astCreate(AST_
     | expr RIGHT_ASSIGN TK_IDENTIFIER '[' expr ']'          {$$ = astCreate(AST_RIGHT_ASSGN_V, $3, $1, $5,0,0);}
     ;
 
-lprnt: LIT_STRING ',' lprnt                                 {$$= astCreate(AST_SYMBOL, $1, $3, 0, 0, 0);}
-    | LIT_STRING                                            {$$= astCreate(AST_SYMBOL, $1, 0, 0, 0, 0);}
+lprnt: LIT_STRING ',' lprnt                                 {$$= astCreate(AST_STRING, $1, $3, 0, 0, 0);}
+    | LIT_STRING                                            {$$= astCreate(AST_STRING, $1, 0, 0, 0, 0);}
     | expr ',' lprnt                                        {$$ = astCreate(AST_LPRNT,0, $1, $3, 0, 0 );}
     | expr                                                  {$$ = $1;}
     ;
@@ -164,11 +164,11 @@ expr: lit_def                                               {$$= $1;}
     | expr OPERATOR_EQ expr                                 {$$ = astCreate(AST_EQ,0, $1, $3, 0, 0);}
     | expr OPERATOR_DIF expr                                {$$ = astCreate(AST_DIF,0, $1, $3, 0, 0);}
     | '(' expr ')'                                          {$$ = $2;}
-    | call_funct                                            {$$ = astCreate(AST_CALL_FUNCT, 0, $1, 0,0,0);}
+    | call_funct                                            {$$ = $1;}
     ;
 
-call_funct: TK_IDENTIFIER '(' larg ')'                      {$$= astCreate(AST_SYMBOL, $1 ,$3, 0, 0 , 0);}
-    | TK_IDENTIFIER '('')'                                  {$$= astCreate(AST_SYMBOL, $1 ,0, 0, 0 , 0);}
+call_funct: TK_IDENTIFIER '(' larg ')'                      {$$= astCreate(AST_CALL_FUNCT, $1 ,$3, 0, 0 , 0);}
+    | TK_IDENTIFIER '('')'                                  {$$= astCreate(AST_CALL_FUNCT, $1 ,0, 0, 0 , 0);}
     ;
 
 larg: expr add_arg                                          {$$ = astCreate(AST_LARG, 0, $1, $2, 0,0); }

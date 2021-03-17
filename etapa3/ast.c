@@ -36,6 +36,7 @@ void astPrint(AST *node, int level)
         case AST_MINOR: fprintf(stderr, "AST_MINOR"); break;
         case AST_BIGGER: fprintf(stderr, "AST_BIGGER"); break;
         case AST_OR: fprintf(stderr, "AST_OR"); break;
+        case AST_AND: fprintf(stderr, "AST_AND"); break;
         case AST_NOT: fprintf(stderr, "AST_NOT"); break;
         case AST_DOLLAR: fprintf(stderr, "AST_DOLLAR"); break;
         case AST_TAG: fprintf(stderr, "AST_TAG"); break;
@@ -51,7 +52,7 @@ void astPrint(AST *node, int level)
         case AST_KW_POINTER: fprintf(stderr, "AST_KW_POINTER"); break;
         case AST_VECT_VL: fprintf(stderr, "AST_VECT_VL"); break;
         case AST_LCMMD: fprintf(stderr, "AST_LCMMD"); break;
-        case AST_ASSGN: fprintf(stderr, "AST_ASSGN"); break;
+        case AST_STRING: fprintf(stderr, "AST_STRING"); break;
         case AST_READ: fprintf(stderr, "AST_READ"); break;
         case AST_PRINT: fprintf(stderr, "AST_PRINT"); break;
         case AST_RETURN: fprintf(stderr, "AST_RETURN"); break;
@@ -71,6 +72,8 @@ void astPrint(AST *node, int level)
         case AST_DEC_VAR: fprintf(stderr, "AST_DEC_VAR"); break;
         case AST_DECL: fprintf(stderr, "AST_DECL"); break;
         case AST_BODY: fprintf(stderr, "AST_BODY"); break;
+    
+        
         default: fprintf(stderr, "AST_UNKOWN");  break;
     }
     
