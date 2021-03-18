@@ -10,9 +10,13 @@ char [3] t: 'x' 'b' 'a';
 char [30] s;
 pointer [1] i: true;
 pointer [10] k;
+
+
 int  bloco_vazio ( ) 
 {
 };
+
+
 int  main ( ) 
 {
 	a <- 5;
@@ -24,16 +28,17 @@ int  main ( )
 	d <- (23 - 10);
 	e <- (20 * 1);
 	f <- (2 / 11);
-		print "Digite um numero: \n";
+	print "Digite um numero: \n";
 	read a;
-		print v[55];
-		print 'g';
-		print "O numero lido foi", a;
+	print v[55];
+	print 'g';
+	print "O numero lido foi", a;
 	return true;
 	return azul;
 	
 
 while ( i < 10)
+
 {
 	i <-  incn (i, 1) ;
 	a <-  incn (a, 1) ;
@@ -41,10 +46,12 @@ while ( i < 10)
 };
 	
 
-while (  ~ i)	print "azul";
+while (  ~ i)
+print "azul";
 	
 
 while ( a > b)
+
 {
 	i <-  incn (i, 1) ;
 	a <-  incn (a, 1) ;
@@ -52,6 +59,7 @@ while ( a > b)
 	
 
 while (  ~ 10)
+
 {
 	i <-  incn ( ~ i, 1) ;
 	a <-  incn (a, 1) ;
@@ -59,24 +67,26 @@ while (  ~ 10)
 	
 
 if ( a & b ) then
-	print "A e B";
+print "A e B";
 	
 
 while (  # x >= 'x')
+
 {
 	return false;
 };
 	
 
 while ( i <= 10)
+
 {
 	i <-  # i;
-		print "Incrementado algumas vezes a fica ", i,"\n";
+	print "Incrementado algumas vezes a fica ", i,"\n";
 };
 	
 
 if ( a == 15 ) then
-	print "A=15\n"
+print "A=15\n"
 	else 
 a -> b;
 	read a;
@@ -85,14 +95,16 @@ a -> b;
 if (  ~ a == 15 |  $ a != 17 ) then
 
 	else 
-	print "A igual a 15 ou 17\n";
+print "A igual a 15 ou 17\n";
 	
 
 if ( i == 100 ) then
-	print "Nao tem como isso...\n"
+print "Nao tem como isso...\n"
 	else 
-	print "OK!\n";
+print "OK!\n";
 };
+
+
 int  incn (int x, int n ) 
 {
 	return x + n;
@@ -101,6 +113,8 @@ int  incn (int x, int n )
 	return v[545645];
 	return 'z';
 };
+
+
 bool  isTrue ( ) 
 {
 	
@@ -112,7 +126,7 @@ bool  isTrue ( )
 {
 	
 {
-		print "montanha";
+	print "montanha";
 };
 };
 	return  isTrue (a, b, 2 + 1,  ~ a) ;

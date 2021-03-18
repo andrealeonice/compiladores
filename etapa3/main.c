@@ -141,7 +141,7 @@ void decompile ( AST *node, FILE *out)
             fprintf(out, "%s", node->symbol->text); 
             break;
         case AST_PRINT: 
-            fprintf(out, "\tprint "); 
+            fprintf(out, "print "); 
             decompile(node->son[0], out); 
             break; 
         case AST_STRING: 
@@ -165,7 +165,7 @@ void decompile ( AST *node, FILE *out)
         case AST_WHILE: 
             fprintf(out, "\n\nwhile ( "); 
             decompile (node->son[0], out);
-            fprintf (out, ")"); 
+            fprintf (out, ")\n"); 
             decompile (node->son[1], out);
             break;
         case AST_IF_ELSE: 
@@ -229,6 +229,7 @@ void decompile ( AST *node, FILE *out)
             fprintf(out, " %s (", node->symbol->text); 
             break;
         case AST_DEC_FUNCT: 
+            fprintf(out, "\n\n");
             decompile(node->son[0], out);
             fprintf(out, " %s (", node->symbol->text); 
             decompile(node->son[1], out); 
