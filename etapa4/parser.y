@@ -1,6 +1,7 @@
 %{
     #include "hash.h"
     #include "ast.h"
+    #include "semantic.h"
 int yyerror();
 int getLineNumber(void);
 int yylex();
@@ -57,7 +58,6 @@ int yylex();
 %type<ast> decl
 %type<ast> dec
 %type<ast> type
-%type<ast> def
 %type<ast> lprnt
 %type<ast> call_funct
 %type<ast> larg
@@ -70,14 +70,14 @@ int yylex();
 
 %%
 
-programa: decl   { $$ = $1; astPrint($1, 0); finalAST = $$;}
+programa: decl   { $$ = $1; astPrint($1, 0); finalAST = $$; check_and_set_declarations($1); check_undeclared(); check_operands($1);}
     ;
 
 decl: dec ';' decl                                          { $$ = astCreate(AST_DECL, 0, $1, $3, 0, 0); }
     |                                                       {$$=0;}
     ;
 
-dec: type def                                               {$$ = astCreate(AST_DEC_VAR, 0, $1, $2, 0, 0);}
+dec:  type TK_IDENTIFIER ':' lit_def                         {$$ = astCreate(AST_DEC_VAR, $2, $1, $4, 0, 0);}
     | type '[' LIT_INTEGER ']' TK_IDENTIFIER init_v         {$$= astCreate(AST_DEC_VECTOR, $5, $1, astCreate(AST_SYMBOL, $3, 0, 0, 0, 0), $6, 0);}
     | type TK_IDENTIFIER '(' param ')' body                 {$$= astCreate(AST_DEC_FUNCT, $2, $1, $4, $6, 0);} 
     ;
@@ -86,9 +86,6 @@ type: KW_INT                                                {$$ = astCreate(AST_
     | KW_BOOL                                               {$$ = astCreate(AST_KW_BOOL, 0, 0 ,0, 0, 0);}
     | KW_CHAR                                               {$$ = astCreate(AST_KW_CHAR, 0, 0 ,0, 0, 0);}
     | KW_POINTER                                            {$$ = astCreate(AST_KW_POINTER, 0, 0 ,0, 0, 0);}
-    ;
-
-def: TK_IDENTIFIER ':' lit_def                              {$$ = astCreate(AST_SYMBOL, $1, $3, 0, 0, 0);}
     ;
 
 lit_def: LIT_CHAR                                           {$$ = astCreate(AST_SYMBOL, $1 ,0, 0, 0 , 0);}

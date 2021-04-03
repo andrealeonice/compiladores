@@ -47,17 +47,17 @@ return                         {return KW_RETURN;}
 [ \t]
 "//".*                          
 "/*"                           {BEGIN (COMMENT);}
-"true"                         {yylval.symbol = hashInsert(yytext,LIT_TRUE); return LIT_TRUE;}
-"false"                        {yylval.symbol = hashInsert(yytext,LIT_FALSE); return LIT_FALSE;}
-[a-zA-Z_]+[0-9a-zA-Z_]*        {yylval.symbol = hashInsert(yytext, TK_IDENTIFIER); return TK_IDENTIFIER;}
+"true"                         {yylval.symbol = hashInsert(yytext,SYMBOL_TRUE); return LIT_TRUE;}
+"false"                        {yylval.symbol = hashInsert(yytext,SYMBOL_FALSE); return LIT_FALSE;}
+[a-zA-Z_]+[0-9a-zA-Z_]*        {yylval.symbol = hashInsert(yytext, SYMBOL_IDENTIFIER); return TK_IDENTIFIER;}
 
 <COMMENT>"*/"                  {BEGIN (INITIAL);}
 <COMMENT>"\n"                  {++lineNumber;}
 <COMMENT>.
 
-[0-9]+                         {yylval.symbol = hashInsert(yytext, LIT_INTEGER); return LIT_INTEGER;}
-'[^\n']'                       {yylval.symbol = hashInsert(yytext, LIT_CHAR); return LIT_CHAR;}
- \"[^\n"]*\"                   {yylval.symbol = hashInsert(yytext, LIT_STRING); return LIT_STRING;}
+[0-9]+                         {yylval.symbol = hashInsert(yytext, SYMBOL_LITINT); return LIT_INTEGER;}
+'[^\n']'                       {yylval.symbol = hashInsert(yytext, SYMBOL_LITCHAR); return LIT_CHAR;}
+ \"[^\n"]*\"                   {yylval.symbol = hashInsert(yytext, SYMBOL_STRING); return LIT_STRING;}
 
 .                              {return TOKEN_ERROR;}
 

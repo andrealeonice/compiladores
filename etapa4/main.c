@@ -17,11 +17,6 @@ void decompile ( AST *node, FILE *out)
     {
         case AST_SYMBOL: 
             fprintf(out, "%s", node->symbol->text); 
-            if (node->son[0]!=0)
-            {
-            fprintf(out," : "); 
-            decompile(node->son[0], out); 
-            }
             break;
         case AST_ADD: 
             decompile(node->son[0],out);
@@ -252,7 +247,8 @@ void decompile ( AST *node, FILE *out)
         
         case AST_DEC_VAR: 
             decompile(node->son[0], out);
-            fprintf(out, " ");
+            fprintf(out, " %s", node->symbol->text); 
+            fprintf(out,": "); 
             decompile(node->son[1], out); 
             break;
         case AST_DECL: 
@@ -280,7 +276,7 @@ int main(int argc, char ** argv)
    int tok; 
     FILE *outfile;
        if(argc < 3){
-        fprintf(stderr, "Call: etapa3 fileName\n");
+        fprintf(stderr, "Call: etapa4 fileName\n");
         exit(1);
     }
     
