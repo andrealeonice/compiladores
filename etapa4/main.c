@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "ast.h"
 #include "hash.h"
+#include "semantic.h"
 extern FILE *yyin; 
 extern AST *finalAST;
 int yyparse();
@@ -300,7 +301,14 @@ int main(int argc, char ** argv)
     decompile(finalAST, outfile);
 
     hashPrint();
-    fprintf(stderr, "Compilation successful! \n");
-
-       exit(0);
+    if (SemanticErrors)
+    {
+        fprintf(stderr, "Compilatation Failed! There are %d semantic errors \n", SemanticErrors);
+        exit(4); 
+    }
+    else 
+    {
+        fprintf(stderr, "Compilation successful! \n");
+        exit(0);
+    }
 }

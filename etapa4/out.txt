@@ -1,8 +1,8 @@
 int  a: 789;
-bool  b: 50;
+bool  b: 6;
 
 
 int  fun ( ) 
 {
-	azul <- 5 + 2 +  fun (x) ;
+	a <-  fun ()  + 5 + 2 < 0;
 };

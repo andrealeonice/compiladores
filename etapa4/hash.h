@@ -14,18 +14,22 @@
 #define SYMBOL_TRUE 4
 #define SYMBOL_FALSE 5
 #define SYMBOL_LITCHAR 6
-#define SYMBOL_VARIABLE 7
-#define SYMBOL_FUNCTION 8
-#define SYMBOL_VECTOR 9
+#define SYMBOL_POINTER 7
+#define SYMBOL_VARIABLE 8
+#define SYMBOL_FUNCTION 9
+#define SYMBOL_VECTOR 10
 
 #define DATATYPE_INT 1
 #define DATATYPE_BOOL 2
 #define DATATYPE_CHAR 3
 #define DATATYPE_POINTER 4
 
+struct ast_node; 
+
 typedef struct hash_node{
     int type;
     int datatype;
+    struct ast_node *parameters;
     char *text;
     struct hash_node *next;
 } HASH_NODE;
