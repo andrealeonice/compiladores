@@ -1,8 +1,17 @@
-int  a: 789;
-bool  b: 6;
+bool  b: false;
+int  c: 10;
+pointer  a: 1;
+char [10] azul: 'a' 1;
+pointer  ponteiro: 1;
 
 
-int  fun ( ) 
+bool  main ( ) 
 {
-	a <-  fun ()  + 5 + 2 < 0;
+	b <- 1 < 2 | true;
+	ponteiro <-  $ c;
+	 # a -> a;
+	
+
+if ( 1 + 2 != c ) then
+return 0;
 };

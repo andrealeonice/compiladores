@@ -70,7 +70,7 @@ int yylex();
 
 %%
 
-programa: decl   { $$ = $1; astPrint($1, 0); finalAST = $$; check_and_set_declarations($1); check_undeclared(); check_operands($1);}
+programa: decl   { $$ = $1; astPrint($1, 0); finalAST = $$; check_and_set_declarations($1); check_undeclared(); check_operands($1); check_commands ($1);}
     ;
 
 decl: dec ';' decl                                          { $$ = astCreate(AST_DECL, 0, $1, $3, 0, 0); }

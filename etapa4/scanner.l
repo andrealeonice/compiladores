@@ -47,8 +47,8 @@ return                         {return KW_RETURN;}
 [ \t]
 "//".*                          
 "/*"                           {BEGIN (COMMENT);}
-"true"                         {yylval.symbol = hashInsert(yytext,SYMBOL_TRUE); return LIT_TRUE;}
-"false"                        {yylval.symbol = hashInsert(yytext,SYMBOL_FALSE); return LIT_FALSE;}
+"true"                         {yylval.symbol = hashInsert(yytext,SYMBOL_BOOL); return LIT_TRUE;}
+"false"                        {yylval.symbol = hashInsert(yytext,SYMBOL_BOOL); return LIT_FALSE;}
 [a-zA-Z_]+[0-9a-zA-Z_]*        {yylval.symbol = hashInsert(yytext, SYMBOL_IDENTIFIER); return TK_IDENTIFIER;}
 
 <COMMENT>"*/"                  {BEGIN (INITIAL);}
