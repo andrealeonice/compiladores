@@ -1,19 +1,12 @@
-int a: 5; 
-int b: 1;
+// UFRGS - Compiladores - Andrea Santos - 2020/2
 
-int fun ()
-{
-a<-5;
-b<- 777;
-x<- 99+b+fun(x)+1111; 
-c<- b*c; 
-d<- a/2;
-e<- 50-65; 
-if (a<50) then 
-a<-5; 
 
-if (~10) then 
-a<-5 
-else
-a<-5; 
-};
+
+
+int main () 
+  {
+  //print v[55]; //nao printou
+  //print 'g'; //nao printou
+  print "O numero lido foi", a, "testando"; //nao mostrou o a
+    
+  };

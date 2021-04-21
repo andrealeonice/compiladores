@@ -25,10 +25,25 @@
 #define TAC_COPY 17
 #define TAC_JFALSE 18
 #define TAC_LABEL 19
+#define TAC_IFZ 31
+#define TAC_JUMP 32
+
+#define TAC_LEFT 20
+#define TAC_RIGHT 21
+#define TAC_VEC_COPY 22
+#define TAC_ELEM_COPY 23
+#define TAC_FUNCT 24
+#define TAC_BEGIN_FUNCTION 25
+#define TAC_END_FUNCTION 30
+#define TAC_CALL 33
+#define TAC_ARG 34
+#define TAC_LEFT_VEC 35
+#define TAC_RIGHT_VEC 36
 
 #define TAC_READ 26
 #define TAC_PRINT 27
 #define TAC_RETURN 28
+
 
 typedef struct tac_node{
 int type; 
