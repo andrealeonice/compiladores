@@ -6,6 +6,7 @@ TAC*makeBinary(int type, TAC*code[]);
 TAC*makeUnary (int type, TAC*code[]); 
 TAC*makeIfThenElse (TAC*code[]);
 TAC*makeWhile(TAC* code[]);
+TAC* generatePrint(TAC* code0, TAC* code1);
 
 // IMPLEMENTATION
 
@@ -272,7 +273,7 @@ TAC* generateCode(AST*node){
 
     //call function
     case AST_CALL_FUNCT:
-    result = tacJoin( code[0], tacCreate(TAC_CALL, node->symbol, code[0]?code[0]->res:0,0));
+    result = tacJoin( code[0], tacCreate(TAC_CALL,node->symbol, code[0]?code[0]->res:0,0));
     break;
     case AST_LARG: 
     result= tacJoin(tacJoin(code[0],code[1]), tacCreate(TAC_ARG,  makeTemp(),code[0] ? code[0]->res : 0,  code[1] ? code[1]->res : 0));
@@ -298,11 +299,12 @@ TAC* generateCode(AST*node){
     break;
    
    //print
-    case AST_STRING:
-    result =  tacJoin(tacCreate(TAC_PRINT, node->symbol, 0,0), code[0]);
+    case AST_PRINT: 
+    result = code[0];
     break;
+    case AST_STRING:
     case AST_LPRNT:
-    result =  tacJoin(tacCreate(TAC_PRINT,  code[0] ? code[0]->res : 0, 0, 0), code[1]); 
+    result =  tacJoin(tacJoin(code[0], code[1]),tacCreate(TAC_PRINT,node->symbol, code[0] ? code[0]->res : 0, 0)); 
     break;
     
     //conditions
@@ -389,4 +391,19 @@ TAC* makeWhile(TAC* code[]) {
     TAC* tacEndLabel = tacCreate(TAC_LABEL, labelEndWhile, 0, 0);
 
     return tacJoin(tacJoin(tacJoin(tacJoin(tacJoin(tacWhileStartLabel, code[0]), tacEndWhile), code[1]), tacRestart), tacEndLabel);
+}
+
+TAC* generatePrint(TAC* code0, TAC* code1) {
+	TAC* printTac0 = 0;
+	TAC* printTac1 = 0;
+	printTac0 = tacCreate(TAC_PRINT, code0? code0->res : 0, 0, 0);
+	printTac0->prev = code0;
+	if(code1->type != TAC_PRINT) {
+		printTac1 = tacCreate(TAC_PRINT, code1? code1->res : 0, 0, 0);
+		printTac1->prev = code1;
+		return tacJoin(printTac0, printTac1);
+	}
+	else {
+		return tacJoin(printTac0, code1);
+	}
 }

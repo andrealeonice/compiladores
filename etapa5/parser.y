@@ -143,7 +143,7 @@ assign: expr RIGHT_ASSIGN TK_IDENTIFIER                     {$$ = astCreate(AST_
 lprnt: LIT_STRING ',' lprnt                                 {$$= astCreate(AST_STRING, $1, $3, 0, 0, 0);}
     | LIT_STRING                                            {$$= astCreate(AST_STRING, $1, 0, 0, 0, 0);}
     | expr ',' lprnt                                        {$$ = astCreate(AST_LPRNT,0, $1, $3, 0, 0 );}
-    | expr                                                  {$$ = $1;}
+    | expr                                                  {$$ = astCreate(AST_LPRNT,0, $1, 0, 0, 0 );}
     ;
 
 expr: lit_def                                               {$$= $1;}
